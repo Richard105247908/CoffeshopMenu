@@ -22,14 +22,14 @@ public class ProductController {
     );
 
     //due to class level mapping it maps to /products/
+    // Directs spring boot to send the returned string directly as an HTTP response
     @RequestMapping("/")
-    //Directs spring boot to send the returned string directly as an HTTP response
     @ResponseBody
-    public String home() {
+    public String home(){
         return "Welcome to the Coffee Shop!";
     }
 
-    //Method 1 to view all listed products
+//Method 1 to view all listed products
 
 //    @RequestMapping("/list")
 //    @ResponseBody
@@ -43,9 +43,9 @@ public class ProductController {
 
 
     //Method 2 to list specific products
-    // PathVariable used to extract the id from the URL,
-    // which iterates through productList
-    // to find matching product.
+// PathVariable used to extract the id from the URL,
+// which iterates through productList
+// to find matching product.
     @RequestMapping("/details/{id}") // This maps to the URL http://localhost:8080/products/details/{id}
     @ResponseBody
     public String getProductDetailsByID(@PathVariable int id) {
