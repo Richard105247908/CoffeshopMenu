@@ -11,11 +11,11 @@ public class CoffeeshopMenuApplication {
 
         SpringApplication.run(CoffeeshopMenuApplication.class, args);
 
-        Product espresso = new Product(1, "Espresspro", 2.99);
-        Product croissant = new Product(2, "Croissant", 3.49);
-
-        System.out.println("Product ID: "+espresso.getId() + " Name: " +espresso.getName() +" Price: "+espresso.getPrice());
-        System.out.println();
+//        Product espresso = new Product(1, "Espresspro", 2.99);
+//        Product croissant = new Product(2, "Croissant", 3.49);
+//
+//        System.out.println("Product ID: "+espresso.getId() + " Name: " +espresso.getName() +" Price: "+espresso.getPrice());
+//        System.out.println();
 
     }
 

@@ -41,7 +41,11 @@ public class ProductController {
 //        return productDisplay;
 //    }
 
+
     //Method 2 to list specific products
+    // PathVariable used to extract the id from the URL,
+    // which iterates through productList
+    // to find matching product.
     @RequestMapping("/details/{id}") // This maps to the URL http://localhost:8080/products/details/{id}
     @ResponseBody
     public String getProductDetailsByID(@PathVariable int id) {
