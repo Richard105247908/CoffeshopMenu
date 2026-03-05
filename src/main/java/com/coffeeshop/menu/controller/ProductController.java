@@ -2,6 +2,7 @@ package com.coffeeshop.menu.controller;
 
 import com.coffeeshop.menu.model.Product;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,11 +24,12 @@ public class ProductController {
 
     //due to class level mapping it maps to /products/
     // Directs spring boot to send the returned string directly as an HTTP response
-    @RequestMapping("/")
-    @ResponseBody
-    public String home(){
-        return "Welcome to the Coffee Shop!";
-    }
+
+//    @RequestMapping("/")
+//    @ResponseBody
+//    public String home(){
+//        return "Welcome to the Coffee Shop!";
+//    }
 
 //Method 1 to view all listed products
 
@@ -41,19 +43,26 @@ public class ProductController {
 //        return productDisplay;
 //    }
 
+    @RequestMapping("/list") // This maps to the URL http://localhost:8080/products/list
+    public String listProducts(Model productListModel) { // Model argument is used to pass data to the view
+        productListModel.addAttribute("products", productsList); // Add the productsList to the model
+        return "menu";  // This returns the view name, that is, the JSP file name
+    }
+
 
     //Method 2 to list specific products
 // PathVariable used to extract the id from the URL,
 // which iterates through productList
 // to find matching product.
-    @RequestMapping("/details/{id}") // This maps to the URL http://localhost:8080/products/details/{id}
-    @ResponseBody
-    public String getProductDetailsByID(@PathVariable int id) {
-        for (Product product : productsList) {
-            if (product.getId() == id) {
-                return "<strong>Requested Product Details: </strong> <hr> Product ID: " + product.getId() + "<br> Name: " + product.getName() + "<br> Price: $" + product.getPrice();
-            }
-        }
-        return "Product not found!";
-    }
+
+//    @RequestMapping("/details/{id}") // This maps to the URL http://localhost:8080/products/details/{id}
+//    @ResponseBody
+//    public String getProductDetailsByID(@PathVariable int id) {
+//        for (Product product : productsList) {
+//            if (product.getId() == id) {
+//                return "<strong>Requested Product Details: </strong> <hr> Product ID: " + product.getId() + "<br> Name: " + product.getName() + "<br> Price: $" + product.getPrice();
+//            }
+//        }
+//        return "Product not found!";
+//    }
 }
