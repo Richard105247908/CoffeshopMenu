@@ -2,7 +2,6 @@ package com.coffeeshop.menu.controller;
 
 import com.coffeeshop.menu.model.Product;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,9 +20,18 @@ public class ProductController {
             new Product(5, "Americano", 2.75)
     );
 
+    //due to class level mapping it maps to /products/
     @RequestMapping("/")
+    //Directs spring boot to send the returned string directly as an HTTP response
     @ResponseBody
     public String home(){
         return "Welcome to the Coffee Shop!";
     }
+
+    @RequestMapping("/list")
+    @ResponseBody
+    public String listProducts() {
+        
+    }
+
 }
