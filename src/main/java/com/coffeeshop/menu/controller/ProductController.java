@@ -10,6 +10,7 @@ import java.util.List;
 @RequestMapping("/products")// means all URL starts with  http://localhost:8080/products/
 public class ProductController {
 
+    //The List.of(…) method creates an immutable list, which is great for fixed data
     private List<Product> productList= List.of(
             new Product(1, "Espresso", 2.50),
             new Product(2, "Latte", 3.50),
