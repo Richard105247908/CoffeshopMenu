@@ -2,7 +2,9 @@ package com.coffeeshop.menu.controller;
 
 import com.coffeeshop.menu.model.Product;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -18,4 +20,10 @@ public class ProductController {
             new Product(4, "Chocolate Muffin", 2.25),
             new Product(5, "Americano", 2.75)
     );
+
+    @RequestMapping("/")
+    @ResponseBody
+    public String home(){
+        return "Welcome to the Coffee Shop!";
+    }
 }
