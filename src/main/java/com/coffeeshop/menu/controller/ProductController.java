@@ -43,6 +43,7 @@ public class ProductController {
 //        return productDisplay;
 //    }
 
+    //help with jsp HTML in jsp file in webapp
     @RequestMapping("/list") // This maps to the URL http://localhost:8080/products/list
     public String listProducts(Model productListModel) { // Model argument is used to pass data to the view
         productListModel.addAttribute("products", productsList); // Add the productsList to the model
