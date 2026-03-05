@@ -2,6 +2,7 @@ package com.coffeeshop.menu.controller;
 
 import com.coffeeshop.menu.model.Product;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public class ProductController {
 
     //The List.of(…) method creates an immutable list, which is great for fixed data
-    private List<Product> productList= List.of(
+    private List<Product> productsList = List.of(
             new Product(1, "Espresso", 2.50),
             new Product(2, "Latte", 3.50),
             new Product(3, "Croissant", 2.00),
@@ -24,14 +25,31 @@ public class ProductController {
     @RequestMapping("/")
     //Directs spring boot to send the returned string directly as an HTTP response
     @ResponseBody
-    public String home(){
+    public String home() {
         return "Welcome to the Coffee Shop!";
     }
 
-    @RequestMapping("/list")
-    @ResponseBody
-    public String listProducts() {
-        
-    }
+    //Method 1 to view all listed products
 
+//    @RequestMapping("/list")
+//    @ResponseBody
+//    public String listProducts() {
+//        String productDisplay = "<strong>Product List:</strong> <hr>";
+//        for (Product product : productsList) {
+//            productDisplay += "Product: " + product.getId() + " - " + product.getName() + " - $" + product.getPrice() + "<br>";
+//        }
+//        return productDisplay;
+//    }
+
+    //Method 2 to list specific products
+    @RequestMapping("/details/{id}") // This maps to the URL http://localhost:8080/products/details/{id}
+    @ResponseBody
+    public String getProductDetailsByID(@PathVariable int id) {
+        for (Product product : productsList) {
+            if (product.getId() == id) {
+                return "<strong>Requested Product Details: </strong> <hr> Product ID: " + product.getId() + "<br> Name: " + product.getName() + "<br> Price: $" + product.getPrice();
+            }
+        }
+        return "Product not found!";
+    }
 }
