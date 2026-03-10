@@ -84,6 +84,12 @@ public class ProductController {
         return "menu";  // Returns the view name (HTML file name)
     }
 
+    @RequestMapping("/add")  // Maps to the URL http://localhost:8080/add
+    public String showProductForm(Model productAddFormModel) {
+        productAddFormModel.addAttribute("product", new Product());  // Add a new product instance to the model
+        return "add-new-product";
+    }
+
     @PostMapping("/addNewProduct")  // Handles the form submission
     public String addProduct(Product product) {
         productsList.add(product);  // Adds the submitted product to productsList
