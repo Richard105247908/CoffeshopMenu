@@ -4,6 +4,7 @@ import com.coffeeshop.menu.model.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -66,4 +67,12 @@ public class ProductController {
 //        }
 //        return "Product not found!";
 //    }
+
+    @PostMapping("/addNewProduct")  // Handles the form submission
+    public String addProduct(Product product) {
+        productsList.add(product);  // Adds the submitted product to productsList
+        System.out.println(productsList);  // Logs the updated product list
+        return "redirect:/";  // Redirects back to the main product list view
+    }
+
 }
