@@ -1,6 +1,12 @@
 package com.coffeeshop.menu.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Products")
 public class Product {
+    
     private int id;
     private String name;
     private double price;
