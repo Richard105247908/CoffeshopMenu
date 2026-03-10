@@ -6,6 +6,7 @@ public class Product {
     private double price;
 
     //Constructors, standard getters and setters
+    public Product(){};
 
     public Product(int id, String name, double price) {
         this.id = id;

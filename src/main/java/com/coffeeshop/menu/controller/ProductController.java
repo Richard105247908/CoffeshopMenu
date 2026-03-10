@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
-@RequestMapping("/products")// means all URL starts with  http://localhost:8080/products/
-public class ProductController {
+//@Controller
+//@RequestMapping("/products")// means all URL starts with  http://localhost:8080/products/
+//public class ProductController {
 
     //The List.of(…) method creates an immutable list, which is great for fixed data
 //    private List<Product> productsList = List.of(
@@ -70,6 +70,9 @@ public class ProductController {
 //        return "Product not found!";
 //    }
 
+
+@Controller
+public class ProductController {
     private List<Product> productsList = new ArrayList<>(List.of(
             new Product(1, "Espresso", 2.50),
             new Product(2, "Latte", 3.50),
@@ -96,5 +99,4 @@ public class ProductController {
         System.out.println(productsList);  // Logs the updated product list
         return "redirect:/";  // Redirects back to the main product list view
     }
-
 }
