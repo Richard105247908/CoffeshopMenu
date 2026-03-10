@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -15,13 +16,14 @@ import java.util.List;
 public class ProductController {
 
     //The List.of(…) method creates an immutable list, which is great for fixed data
-    private List<Product> productsList = List.of(
-            new Product(1, "Espresso", 2.50),
-            new Product(2, "Latte", 3.50),
-            new Product(3, "Croissant", 2.00),
-            new Product(4, "Chocolate Muffin", 2.25),
-            new Product(5, "Americano", 2.75)
-    );
+//    private List<Product> productsList = List.of(
+//            new Product(1, "Espresso", 2.50),
+//            new Product(2, "Latte", 3.50),
+//            new Product(3, "Croissant", 2.00),
+//            new Product(4, "Chocolate Muffin", 2.25),
+//            new Product(5, "Americano", 2.75)
+//    ); the list was immutable, cannot be changed
+
 
     //due to class level mapping it maps to /products/
     // Directs spring boot to send the returned string directly as an HTTP response
@@ -45,11 +47,11 @@ public class ProductController {
 //    }
 
     //help with jsp HTML in jsp file in webapp
-    @RequestMapping("/list") // This maps to the URL http://localhost:8080/products/list
-    public String listProducts(Model productListModel) { // Model argument is used to pass data to the view
-        productListModel.addAttribute("products", productsList); // Add the productsList to the model
-        return "menu";  // This returns the view name, that is, the JSP file name
-    }
+//    @RequestMapping("/list") // This maps to the URL http://localhost:8080/products/list
+//    public String listProducts(Model productListModel) { // Model argument is used to pass data to the view
+//        productListModel.addAttribute("products", productsList); // Add the productsList to the model
+//        return "menu";  // This returns the view name, that is, the JSP file name
+//    }
 
 
     //Method 2 to list specific products
@@ -67,6 +69,20 @@ public class ProductController {
 //        }
 //        return "Product not found!";
 //    }
+
+    private List<Product> productsList = new ArrayList<>(List.of(
+            new Product(1, "Espresso", 2.50),
+            new Product(2, "Latte", 3.50),
+            new Product(3, "Croissant", 2.00),
+            new Product(4, "Chocolate Muffin", 2.25),
+            new Product(5, "Americano", 2.75)
+    ));
+
+    @RequestMapping("/")  // Maps to the URL http://localhost:8080/
+    public String listProducts(Model productListModel) {
+        productListModel.addAttribute("products", productsList);  // Add productsList to the model
+        return "menu";  // Returns the view name (HTML file name)
+    }
 
     @PostMapping("/addNewProduct")  // Handles the form submission
     public String addProduct(Product product) {
